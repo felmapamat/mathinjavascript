@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #ffffff;
+            width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input, select {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 5px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Math in JavaScript</h1>
+    <p>Using JavaScript create a web page that will execute a simple math application.</p>
+
+    <div class="container">
+
+        <label>First Number:</label>
+        <input type="number" id="num1">
+
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <label>Second Number:</label>
+        <input type="number" id="num2">
+
+        <br>
+
+        <button onclick="calculate()">Solve</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+        function calculate() {
+
+            let num1 = document.getElementById("num1").value;
+            let num2 = document.getElementById("num2").value;
+            let operator = document.getElementById("operator").value;
+
+            // If empty, do nothing
+            if (num1 === "" || num2 === "") {
+                document.getElementById("result").innerHTML = "";
+                return;
+            }
+
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+
+            let result;
+
+            if (operator === "+") {
+                result = num1 + num2;
+            } else if (operator === "-") {
+                result = num1 - num2;
+            } else if (operator === "*") {
+                result = num1 * num2;
+            } else if (operator === "/") {
+                if (num2 === 0) {
+                    document.getElementById("result").innerHTML = "Cannot divide by zero";
+                    return;
+                }
+                result = num1 / num2;
+            }
+
+            document.getElementById("result").innerHTML = "Result: " + result;
+        }
+    </script>
+
+</body>
+</html>
