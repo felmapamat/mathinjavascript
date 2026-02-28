@@ -5,68 +5,101 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
+            background: linear-gradient(135deg, #e3f2fd, #f4f6f9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
             padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 550px;
         }
 
         h1 {
-            margin-bottom: 10px;
+            margin-top: 0;
         }
 
-        .container {
-            margin-top: 20px;
-            padding: 20px;
-            background: #ffffff;
-            width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        p {
+            color: #555;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         input, select {
-            padding: 5px;
-            margin: 5px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input {
+            flex: 1;
+        }
+
+        select {
+            width: 60px;
         }
 
         button {
-            padding: 5px 15px;
-            margin-top: 10px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #1976d2;
+            color: white;
+            font-size: 14px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #125aa3;
         }
 
         #result {
-            margin-top: 15px;
-            font-weight: bold;
+            margin-top: 20px;
             font-size: 18px;
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Math in JavaScript</h1>
-    <p>Using JavaScript create a web page that will execute a simple math application.</p>
+    <div class="card">
+        <h1>Math in JavaScript</h1>
+        <p>Using JavaScript create a web page that will execute a simple math application.</p>
 
-    <div class="container">
+        <div class="row">
+            <label>First Number:</label>
+            <input type="number" id="num1">
 
-        <label>First Number:</label>
-        <input type="number" id="num1">
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
 
-        <select id="operator">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-        </select>
-
-        <label>Second Number:</label>
-        <input type="number" id="num2">
-
-        <br>
+            <label>Second Number:</label>
+            <input type="number" id="num2">
+        </div>
 
         <button onclick="calculate()">Solve</button>
 
         <div id="result"></div>
-
     </div>
 
     <script>
@@ -76,7 +109,6 @@
             let num2 = document.getElementById("num2").value;
             let operator = document.getElementById("operator").value;
 
-            // If empty, do nothing
             if (num1 === "" || num2 === "") {
                 document.getElementById("result").innerHTML = "";
                 return;
@@ -101,7 +133,7 @@
                 result = num1 / num2;
             }
 
-            document.getElementById("result").innerHTML = "Result: " + result;
+            document.getElementById("result").innerHTML = "Result: " + result.toFixed(2);
         }
     </script>
 
