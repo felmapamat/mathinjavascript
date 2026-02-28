@@ -3,139 +3,144 @@
 <head>
     <title>Math in JavaScript</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd, #f4f6f9);
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #dbeafe, #f1f5f9);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
 
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 550px;
+            background: #ffffff;
+            width: 650px;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         h1 {
-            margin-top: 0;
+            margin: 0 0 10px 0;
         }
 
         p {
+            margin: 0 0 25px 0;
             color: #555;
         }
 
-        .row {
-            display: flex;
+        .form-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 70px 130px 1fr;
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: 500;
         }
 
         input, select {
-            padding: 8px;
-            border-radius: 6px;
+            padding: 10px;
+            border-radius: 8px;
             border: 1px solid #ccc;
             font-size: 14px;
+            width: 100%;
         }
 
-        input {
-            flex: 1;
-        }
-
-        select {
-            width: 60px;
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
 
         button {
-            margin-top: 20px;
-            padding: 10px 20px;
+            margin-top: 25px;
+            padding: 10px 25px;
             border: none;
-            border-radius: 6px;
-            background-color: #1976d2;
+            border-radius: 8px;
+            background-color: #2563eb;
             color: white;
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
             transition: 0.3s;
         }
 
         button:hover {
-            background-color: #125aa3;
+            background-color: #1e4ed8;
         }
 
         #result {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 18px;
             font-weight: bold;
-            color: #333;
+            color: #111;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
-        <h1>Math in JavaScript</h1>
-        <p>Using JavaScript create a web page that will execute a simple math application.</p>
+<div class="card">
+    <h1>Math in JavaScript</h1>
+    <p>Using JavaScript create a web page that will execute a simple math application.</p>
 
-        <div class="row">
-            <label>First Number:</label>
-            <input type="number" id="num1">
+    <div class="form-row">
+        <label>First Number:</label>
+        <input type="number" id="num1">
 
-            <select id="operator">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">*</option>
-                <option value="/">/</option>
-            </select>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
 
-            <label>Second Number:</label>
-            <input type="number" id="num2">
-        </div>
-
-        <button onclick="calculate()">Solve</button>
-
-        <div id="result"></div>
+        <label>Second Number:</label>
+        <input type="number" id="num2">
     </div>
 
-    <script>
-        function calculate() {
+    <button onclick="calculate()">Solve</button>
 
-            let num1 = document.getElementById("num1").value;
-            let num2 = document.getElementById("num2").value;
-            let operator = document.getElementById("operator").value;
+    <div id="result"></div>
+</div>
 
-            if (num1 === "" || num2 === "") {
-                document.getElementById("result").innerHTML = "";
-                return;
-            }
+<script>
+function calculate() {
 
-            num1 = parseFloat(num1);
-            num2 = parseFloat(num2);
+    let num1 = document.getElementById("num1").value;
+    let num2 = document.getElementById("num2").value;
+    let operator = document.getElementById("operator").value;
 
-            let result;
+    if (num1 === "" || num2 === "") {
+        document.getElementById("result").innerHTML = "";
+        return;
+    }
 
-            if (operator === "+") {
-                result = num1 + num2;
-            } else if (operator === "-") {
-                result = num1 - num2;
-            } else if (operator === "*") {
-                result = num1 * num2;
-            } else if (operator === "/") {
-                if (num2 === 0) {
-                    document.getElementById("result").innerHTML = "Cannot divide by zero";
-                    return;
-                }
-                result = num1 / num2;
-            }
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
 
-            document.getElementById("result").innerHTML = "Result: " + result.toFixed(2);
+    let result;
+
+    if (operator === "+") result = num1 + num2;
+    else if (operator === "-") result = num1 - num2;
+    else if (operator === "*") result = num1 * num2;
+    else if (operator === "/") {
+        if (num2 === 0) {
+            document.getElementById("result").innerHTML = "Cannot divide by zero";
+            return;
         }
-    </script>
+        result = num1 / num2;
+    }
+
+    document.getElementById("result").innerHTML = "Result: " + result.toFixed(2);
+}
+</script>
 
 </body>
 </html>
